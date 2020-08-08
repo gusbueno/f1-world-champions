@@ -1,3 +1,12 @@
-export interface IStore { }
+import { IDashboardState } from './Dashboard/Dashboard.types'
 
-export default { }
+export interface IStore {
+  dashboard: IDashboardState
+}
+
+export default {
+  dashboard: {
+    worldChampions: [],
+    isLoading: false
+  }
+}

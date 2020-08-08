@@ -2,10 +2,12 @@ import { ThunkAction } from 'redux-thunk'
 import axios from 'axios'
 
 import { IStore } from '../store'
-import { to } from '../utils'
+import { to, normalizeWorldChampions } from '../utils'
 import {
   FETCH_WORLD_CHAMPIONS_BY_RANGE_START,
-  FETCH_RACES_WINNERS_BY_YEAR_START
+  FETCH_WORLD_CHAMPIONS_BY_RANGE_SUCCESS,
+  FETCH_RACES_WINNERS_BY_YEAR_START,
+  IWorldChampions
 } from './Dashboard.types'
 
 const YEAR_LIST = Array.from({ length: 11 }, (_, value) => value+2005)
@@ -13,6 +15,11 @@ const API = 'https://ergast.com/api/f1/'
 
 export const fetchWorldChampionsByRangeStart = () => ({
   type: FETCH_WORLD_CHAMPIONS_BY_RANGE_START
+})
+
+export const fechWorldChampionsByRangeSuccess = (worldChampions: Array<IWorldChampions>) => ({
+  type: FETCH_WORLD_CHAMPIONS_BY_RANGE_SUCCESS,
+  worldChampions
 })
 
 export const fetchRacesWinnersByYear = () => ({
@@ -29,8 +36,11 @@ export const getWorldChampionsByRange = (): ThunkAction<Promise<any>, IStore, un
       })
     ))
 
+    if (results) {
+      return dispatch(fechWorldChampionsByRangeSuccess(normalizeWorldChampions(results)))
+    }
+
     err && console.log(err)
-    results && console.log(results)
   }
 }
 
