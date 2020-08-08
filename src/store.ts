@@ -7,6 +7,14 @@ export interface IStore {
 export default {
   dashboard: {
     worldChampions: [],
+    isLoading: false,
+    modal: {
+      isOpen: false,
+      season: null
+    }
+  },
+  seasonDetail: {
+    races: [],
     isLoading: false
   }
 }

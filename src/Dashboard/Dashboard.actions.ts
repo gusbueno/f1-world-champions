@@ -7,7 +7,8 @@ import {
   FETCH_WORLD_CHAMPIONS_BY_RANGE_START,
   FETCH_WORLD_CHAMPIONS_BY_RANGE_SUCCESS,
   FETCH_RACES_WINNERS_BY_YEAR_START,
-  IWorldChampions
+  IWorldChampions,
+  ON_OPEN_MODAL
 } from './Dashboard.types'
 
 const YEAR_LIST = Array.from({ length: 11 }, (_, value) => value+2005)
@@ -43,6 +44,11 @@ export const getWorldChampionsByRange = (): ThunkAction<Promise<any>, IStore, un
     err && console.log(err)
   }
 }
+
+export const openModal = (season: number) => ({
+  type: ON_OPEN_MODAL,
+  season
+})
 
 export const getRacesWinnersByYear = (year: number): ThunkAction<Promise<any>, IStore, undefined, any> => {
   return async (dispatch): Promise<any> => {

@@ -11,9 +11,10 @@ import {
 } from './WorldChampionsList.styles'
 import Button from '../../../UI/Button'
 
-const WorldChampionsList = ({ worldChampions }: Props) => {
+const WorldChampionsList = ({ worldChampions, onOpenModal }: Props) => {
   const onShowSeasonDetail = (season: number) => {
     console.log(season)
+    onOpenModal(season)
   }
   return (
     <>
