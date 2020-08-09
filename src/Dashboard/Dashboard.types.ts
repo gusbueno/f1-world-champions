@@ -1,16 +1,23 @@
 export const FETCH_WORLD_CHAMPIONS_BY_RANGE_START = 'FETCH_WORLD_CHAMPIONS_BY_RANGE_START'
 export const FETCH_WORLD_CHAMPIONS_BY_RANGE_SUCCESS = 'FETCH_WORLD_CHAMPIONS_BY_RANGE_SUCCESS'
-export const FETCH_RACES_WINNERS_BY_YEAR_START = 'FETCH_RACES_WINNERS_BY_YEAR_START'
+export const ON_OPEN_MODAL = 'ON_OPEN_MODAL'
+export const ON_CLOSE_MODAL = 'ON_CLOSE_MODAL'
 
-export interface IWorldChampions {
+export interface IWorldChampion {
+  driverId: string,
   season: number,
   championFullName: string,
   points: number
 }
 
+interface IModal {
+  isOpen: boolean
+}
+
 export interface IDashboardState {
-  worldChampions: Array<IWorldChampions>,
-  isLoading: boolean
+  worldChampions: Array<IWorldChampion>,
+  isLoading: boolean,
+  modal?: IModal
 }
 
 interface IDashboardWorldChampionsStartAction {
@@ -19,16 +26,30 @@ interface IDashboardWorldChampionsStartAction {
 
 interface IDashboardWorldChampionsSuccessAction {
   type: typeof FETCH_WORLD_CHAMPIONS_BY_RANGE_SUCCESS,
-  worldChampions: Array<IWorldChampions>
+  worldChampions: Array<IWorldChampion>
+}
+
+export interface IOpenModalAction {
+  type: typeof ON_OPEN_MODAL,
+  season: number,
+  worldChampion: string
+}
+
+export interface ICloseModalAction {
+  type: typeof ON_CLOSE_MODAL
 }
 
 export type DashboardActionTypes =
   IDashboardWorldChampionsStartAction |
-  IDashboardWorldChampionsSuccessAction
+  IDashboardWorldChampionsSuccessAction |
+  IOpenModalAction |
+  ICloseModalAction
 
 export interface IDashboardProps {
   onGetWorldChampionsByRange: () => void,
-  onGetRacesWinnersByYear: (year: number) => void
+  onOpenModal: (season: number, worldChampion: string) => void,
+  closeModal: () => void,
+  isModalOpen: boolean
 }
 
 export type Props = IDashboardProps & IDashboardState

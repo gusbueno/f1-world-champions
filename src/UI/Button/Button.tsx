@@ -15,6 +15,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(({
     mt,
     mr,
     mb,
+    isFluid = false,
     ...others
   }, ref) => {
   return (
@@ -26,6 +27,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(({
       mt={mt}
       mr={mr}
       mb={mb}
+      isFluid={isFluid}
       onClick={onClick}
       {...others}
     >

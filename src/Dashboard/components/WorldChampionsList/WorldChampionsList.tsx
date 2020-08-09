@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Props } from './WorldChampionsList.types'
-import { IWorldChampions } from '../../Dashboard.types'
+import { IWorldChampion } from '../../Dashboard.types'
 import {
   Row,
   Col,
@@ -11,14 +11,14 @@ import {
 } from './WorldChampionsList.styles'
 import Button from '../../../UI/Button'
 
-const WorldChampionsList = ({ worldChampions }: Props) => {
-  const onShowSeasonDetail = (season: number) => {
-    console.log(season)
+const WorldChampionsList = ({ worldChampions, onOpenModal }: Props) => {
+  const onShowSeasonDetail = (season: number, worldChampion: string) => {
+    onOpenModal(season, worldChampion)
   }
   return (
     <>
-      {worldChampions.map((worldChampionInfo: IWorldChampions, index: number) => {
-        const { season, championFullName, points } = worldChampionInfo
+      {worldChampions.map((worldChampionInfo: IWorldChampion, index: number) => {
+        const { driverId, season, championFullName, points } = worldChampionInfo
         return (
           <Row key={index}>
             <Col>
@@ -29,7 +29,7 @@ const WorldChampionsList = ({ worldChampions }: Props) => {
               <PointsText>Points: {points}</PointsText>
             </Col>
             <Col>
-              <Button theme="secondary" onClick={() => onShowSeasonDetail(season)}>Season detail</Button>
+              <Button theme="secondary" onClick={() => onShowSeasonDetail(season, driverId)}>Races</Button>
             </Col>
           </Row>
         )

@@ -10,15 +10,16 @@ import {
   StateText
 } from './Dashboard.styles'
 import WorldChampionsList from './components/WorldChampionsList'
+import Modal from './components/Modal'
 
-const Dashboard = ({ onGetWorldChampionsByRange, isLoading, worldChampions }: Props) => {
+const Dashboard = ({ onGetWorldChampionsByRange, isLoading, worldChampions, onOpenModal, closeModal, isModalOpen }: Props) => {
   useEffect(() => {
     onGetWorldChampionsByRange()
   }, [])
 
   const renderContent = () => {
     return worldChampions.length ? (
-      <WorldChampionsList worldChampions={worldChampions} />
+      <WorldChampionsList worldChampions={worldChampions} onOpenModal={onOpenModal} />
     ) : (
       <StateContainer>
         <StateText>No data...</StateText>
@@ -39,7 +40,7 @@ const Dashboard = ({ onGetWorldChampionsByRange, isLoading, worldChampions }: Pr
           </StateContainer>
         ) : renderContent()
       }
-      
+      {isModalOpen && <Modal closeModal={closeModal} />}
     </Container>
   )
 }
