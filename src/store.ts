@@ -1,7 +1,9 @@
 import { IDashboardState } from './Dashboard/Dashboard.types'
+import { ISeasonDetailState } from './SeasonDetail/SeasonDetail.types'
 
 export interface IStore {
-  dashboard: IDashboardState
+  dashboard: IDashboardState,
+  seasonDetail: ISeasonDetailState
 }
 
 export default {
@@ -10,11 +12,13 @@ export default {
     isLoading: false,
     modal: {
       isOpen: false,
-      season: null
+      
     }
   },
   seasonDetail: {
     races: [],
-    isLoading: false
+    isLoading: false,
+    season: null,
+    worldChampion: null
   }
 }

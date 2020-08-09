@@ -2,7 +2,7 @@ import { bindActionCreators, AnyAction } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
 import { IStore } from '../store'
-import { getWorldChampionsByRange, getRacesWinnersByYear, openModal } from './Dashboard.actions'
+import { getWorldChampionsByRange, openModal, closeModal } from './Dashboard.actions'
 import {
   getIsLoading,
   getWorldChampions,
@@ -17,6 +17,6 @@ export const mapStateToProps = (state: IStore) => ({
 
 export const mapDispatchToProps = (dispatch: ThunkDispatch<IStore, unknown, AnyAction>) => ({
   onGetWorldChampionsByRange: bindActionCreators(getWorldChampionsByRange, dispatch),
-  onGetRacesWinnersByYear: bindActionCreators(getRacesWinnersByYear, dispatch),
-  onOpenModal: bindActionCreators(openModal, dispatch)
+  onOpenModal: bindActionCreators(openModal, dispatch),
+  closeModal: bindActionCreators(closeModal, dispatch)
 })

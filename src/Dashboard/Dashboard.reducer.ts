@@ -27,12 +27,10 @@ const dashboard = (state = defaultState, action: DashboardActionTypes): IDashboa
       }
     }
     case ON_OPEN_MODAL: {
-      const { season } = action
       return {
         ...state,
         modal: {
-          isOpen: true,
-          season
+          isOpen: true
         }
       }
     }
@@ -40,8 +38,7 @@ const dashboard = (state = defaultState, action: DashboardActionTypes): IDashboa
       return {
         ...state,
         modal: {
-          isOpen: false,
-          season: null
+          isOpen: false
         }
       }
     }

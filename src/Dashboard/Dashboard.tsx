@@ -12,7 +12,7 @@ import {
 import WorldChampionsList from './components/WorldChampionsList'
 import Modal from './components/Modal'
 
-const Dashboard = ({ onGetWorldChampionsByRange, isLoading, worldChampions, onOpenModal, isModalOpen }: Props) => {
+const Dashboard = ({ onGetWorldChampionsByRange, isLoading, worldChampions, onOpenModal, closeModal, isModalOpen }: Props) => {
   useEffect(() => {
     onGetWorldChampionsByRange()
   }, [])
@@ -40,7 +40,7 @@ const Dashboard = ({ onGetWorldChampionsByRange, isLoading, worldChampions, onOp
           </StateContainer>
         ) : renderContent()
       }
-      {isModalOpen && <Modal />}
+      {isModalOpen && <Modal closeModal={closeModal} />}
     </Container>
   )
 }
