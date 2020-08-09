@@ -9,7 +9,8 @@ export const ButtonStyled = styled.button(({
   ml,
   mt,
   mr,
-  mb
+  mb,
+  isFluid
 }: ButtonProps) => {
   const whiteThemeStyle = css`
     color: black;
@@ -34,6 +35,10 @@ export const ButtonStyled = styled.button(({
 
   const marginBottomStyle = css`
     margin-bottom: ${mb}px;
+  `
+
+  const fluidStyle = css`
+    width: 100%;
   `
 
   return css`
@@ -62,5 +67,6 @@ export const ButtonStyled = styled.button(({
     ${mt && marginTopStyle}
     ${mr && marginRightStyle}
     ${mb && marginBottomStyle}
+    ${isFluid && fluidStyle}
   `
 })

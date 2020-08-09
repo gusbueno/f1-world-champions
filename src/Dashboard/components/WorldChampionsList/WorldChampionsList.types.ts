@@ -1,5 +1,6 @@
-import { IWorldChampions } from '../../Dashboard.types'
+import { IWorldChampion } from '../../Dashboard.types'
 
 export interface Props {
-  worldChampions: Array<IWorldChampions>
+  worldChampions: Array<IWorldChampion>,
+  onOpenModal: (season: number, worldChampion: string) => void
 }

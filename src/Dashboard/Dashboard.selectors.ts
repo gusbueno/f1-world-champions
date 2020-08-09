@@ -12,3 +12,13 @@ export const getWorldChampions = createSelector(
   [getDashboard],
   ({ worldChampions }) => worldChampions
 )
+
+export const getModal = createSelector(
+  [getDashboard],
+  ({ modal }) => modal
+)
+
+export const getIsModalOpen = createSelector(
+  [getModal],
+  ({ isOpen }) => isOpen
+)

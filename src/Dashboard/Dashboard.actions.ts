@@ -3,27 +3,24 @@ import axios from 'axios'
 
 import { IStore } from '../store'
 import { to, normalizeWorldChampions } from '../utils'
+import { API_URL } from '../constants'
 import {
   FETCH_WORLD_CHAMPIONS_BY_RANGE_START,
   FETCH_WORLD_CHAMPIONS_BY_RANGE_SUCCESS,
-  FETCH_RACES_WINNERS_BY_YEAR_START,
-  IWorldChampions
+  IWorldChampion,
+  ON_OPEN_MODAL,
+  ON_CLOSE_MODAL
 } from './Dashboard.types'
 
 const YEAR_LIST = Array.from({ length: 11 }, (_, value) => value+2005)
-const API = 'https://ergast.com/api/f1/'
 
 export const fetchWorldChampionsByRangeStart = () => ({
   type: FETCH_WORLD_CHAMPIONS_BY_RANGE_START
 })
 
-export const fechWorldChampionsByRangeSuccess = (worldChampions: Array<IWorldChampions>) => ({
+export const fechWorldChampionsByRangeSuccess = (worldChampions: Array<IWorldChampion>) => ({
   type: FETCH_WORLD_CHAMPIONS_BY_RANGE_SUCCESS,
   worldChampions
-})
-
-export const fetchRacesWinnersByYear = () => ({
-  type: FETCH_RACES_WINNERS_BY_YEAR_START
 })
 
 export const getWorldChampionsByRange = (): ThunkAction<Promise<any>, IStore, undefined, any> => {
@@ -32,7 +29,7 @@ export const getWorldChampionsByRange = (): ThunkAction<Promise<any>, IStore, un
 
     const [err, results] = await to(Promise.all(
       YEAR_LIST.map((year: number) => {
-        return axios.get(`${API}${year}/driverStandings/1.json`)
+        return axios.get(`${API_URL}${year}/driverStandings/1.json`)
       })
     ))
 
@@ -44,13 +41,12 @@ export const getWorldChampionsByRange = (): ThunkAction<Promise<any>, IStore, un
   }
 }
 
-export const getRacesWinnersByYear = (year: number): ThunkAction<Promise<any>, IStore, undefined, any> => {
-  return async (dispatch): Promise<any> => {
-    dispatch(fetchRacesWinnersByYear())
+export const openModal = (season: number, worldChampion: string) => ({
+  type: ON_OPEN_MODAL,
+  season,
+  worldChampion
+})
 
-    const [err, result] = await to(axios.get(`${API}${year}/results/1.json`))
-
-    err && console.log(err)
-    result && console.log(result)
-  }
-}
+export const closeModal = () => ({
+  type: ON_CLOSE_MODAL
+})

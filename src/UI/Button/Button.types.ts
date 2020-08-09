@@ -20,7 +20,9 @@ export interface ButtonProps {
   /* Margin right */
   mr?: number,
   /* Margin bottom */
-  mb?: number
+  mb?: number,
+  /* Full width */
+  isFluid?: boolean
 }
 
 export type Props = ButtonProps & React.HtmlHTMLAttributes<HTMLButtonElement>
