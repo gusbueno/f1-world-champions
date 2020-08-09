@@ -30,7 +30,7 @@ const WorldChampionsList = ({ worldChampions, onOpenModal }: Props) => {
               <PointsText>Points: {points}</PointsText>
             </Col>
             <Col>
-              <Button theme="secondary" onClick={() => onShowSeasonDetail(season)}>Season detail</Button>
+              <Button theme="secondary" onClick={() => onShowSeasonDetail(season)}>Races</Button>
             </Col>
           </Row>
         )
