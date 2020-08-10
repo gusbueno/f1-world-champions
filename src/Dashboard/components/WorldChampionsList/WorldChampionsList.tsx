@@ -15,12 +15,13 @@ const WorldChampionsList = ({ worldChampions, onOpenModal }: Props) => {
   const onShowSeasonDetail = (season: number, worldChampion: string) => {
     onOpenModal(season, worldChampion)
   }
+
   return (
     <>
       {worldChampions.map((worldChampionInfo: IWorldChampion, index: number) => {
         const { driverId, season, championFullName, points } = worldChampionInfo
         return (
-          <Row key={index}>
+          <Row key={index} data-testid="world-champion-info">
             <Col>
               <SeasonText>Season: {season}</SeasonText>
             </Col>
@@ -29,7 +30,7 @@ const WorldChampionsList = ({ worldChampions, onOpenModal }: Props) => {
               <PointsText>Points: {points}</PointsText>
             </Col>
             <Col>
-              <Button theme="secondary" onClick={() => onShowSeasonDetail(season, driverId)}>Races</Button>
+              <Button data-testid="season-detail-button" theme="secondary" onClick={() => onShowSeasonDetail(season, driverId)}>Races</Button>
             </Col>
           </Row>
         )
