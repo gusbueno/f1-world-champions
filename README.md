@@ -7,6 +7,9 @@ This project is listing the F1 world champions from 2005 to 2015, besides, you c
 2. Run `yarn start` so that to run the project in development mode
 3. Run `yarn build` to create a production build
 
+## Testing
+You can launch the tests by running `yarn test`
+
 ## Technologies used
 - [react](https://reactjs.org/)
 - [redux](https://redux.js.org/)
