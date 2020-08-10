@@ -21,21 +21,21 @@ const Dashboard = ({ onGetWorldChampionsByRange, isLoading, worldChampions, onOp
     return worldChampions.length ? (
       <WorldChampionsList worldChampions={worldChampions} onOpenModal={onOpenModal} />
     ) : (
-      <StateContainer>
+      <StateContainer data-testid="no-data-container">
         <StateText>No data...</StateText>
       </StateContainer>
     )
   }
 
   return (
-    <Container>
+    <Container data-testid="dashboard-container">
       <TitleWrapper>
         <TitleText>F1 WORLD CHAMPIONS</TitleText>
         <SubTitleText>Seasons 2005 - 2015</SubTitleText>
       </TitleWrapper>
       {
         isLoading ? (
-          <StateContainer>
+          <StateContainer data-testid="loading-container">
             <StateText>Loading...</StateText>
           </StateContainer>
         ) : renderContent()

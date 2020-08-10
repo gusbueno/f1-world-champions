@@ -14,7 +14,7 @@ const Modal = ({ closeModal }: Props) => {
   return (
     <>
       <GlobalStyle />
-      <Container onClick={closeModal}>
+      <Container data-testid="modal-container" onClick={closeModal}>
         <Content onClick={e => e.stopPropagation()}>
           <SeasonDetail />
           <Footer>
